@@ -24,6 +24,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { SearchPipe } from './pipe/search.pipe';
+import { SidebarComponent } from './layouts/sidebar/sidebar.component';
+import { DashboardComponent } from './pages/dashboard/dashboard.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -44,6 +46,8 @@ import { SearchPipe } from './pipe/search.pipe';
     CreateChecklistComponent,
     EditChecklistComponent,
     SearchPipe,
+    SidebarComponent,
+    DashboardComponent,
   ],
   imports: [
     BrowserModule,
