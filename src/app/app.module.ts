@@ -26,6 +26,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { SearchPipe } from './pipe/search.pipe';
 import { SidebarComponent } from './layouts/sidebar/sidebar.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
+import { ShowDataCleaningComponent } from './pages/dataCleaning/show-data-cleaning/show-data-cleaning.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -48,6 +49,7 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
     SearchPipe,
     SidebarComponent,
     DashboardComponent,
+    ShowDataCleaningComponent,
   ],
   imports: [
     BrowserModule,

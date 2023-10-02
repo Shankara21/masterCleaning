@@ -1,12 +1,13 @@
 <div
-  class="m-1 rounded-xl bg-cBlack w-full h-[99vh] flex flex-col justify-between px-3 py-4 text-white"
+  class="rounded-xl bg-cBlack w-full h-[99vh] flex flex-col justify-between px-3 py-4 text-white"
 >
   <div class="text-2xl font-semibold text-center">
     <img src="assets/logo.svg" alt="" />
   </div>
   <div class="text-3xl flex-1 my-8 gap-5 flex flex-col">
     <a
-      href=""
+      routerLink="/dashboard"
+      routerLinkActive="active"
       class="flex gap-3 items-center text-cGray text-xl hover:text-white duration-300 hover:scale-103 ease-in-out"
     >
       <svg
@@ -24,7 +25,8 @@
       Dashboard
     </a>
     <a
-      href=""
+      routerLink="/area"
+      routerLinkActive="active"
       class="flex gap-3 items-center text-cGray text-xl hover:text-white duration-300 hover:scale-103 ease-in-out"
     >
       <svg
@@ -41,7 +43,8 @@
       Area
     </a>
     <a
-      href=""
+      routerLink="/user"
+      routerLinkActive="active"
       class="flex gap-3 items-center text-cGray text-xl hover:text-white duration-300 hover:scale-103 ease-in-out"
     >
       <svg
@@ -76,7 +79,8 @@
       User
     </a>
     <a
-      href=""
+      routerLink="/cleaning-data"
+      routerLinkActive="active"
       class="flex gap-3 items-center text-cGray text-xl hover:text-white duration-300 hover:scale-103 ease-in-out"
     >
       <svg
@@ -94,7 +98,8 @@
       Cleaning Data
     </a>
     <a
-      href=""
+      routerLink="/checklist"
+      routerLinkActive="active"
       class="flex gap-3 items-center text-cGray text-xl hover:text-white duration-300 hover:scale-103 ease-in-out"
     >
       <svg
@@ -114,15 +119,42 @@
       Checklist
     </a>
   </div>
-  <div class="text-3xl flex items-center gap-3">
-    <div class="avatar online">
-      <div class="w-14 rounded-full">
-        <img src="https://cdn-icons-png.flaticon.com/128/3899/3899618.png" />
+  <div class="dropdown dropdown-top ">
+    <label tabindex="0" class="flex gap-3 cursor-pointer"
+      ><div class="avatar online">
+        <div class="w-14 rounded-full">
+          <img src="https://cdn-icons-png.flaticon.com/128/3899/3899618.png" />
+        </div>
       </div>
-    </div>
-    <div class="flex flex-col">
-      <div class="text-xl font-semibold">Satriya Rifki</div>
-      <div class="text-sm">Admin</div>
-    </div>
+      <div class="flex flex-col">
+        <div class="text-xl font-semibold">Satriya Rifki</div>
+        <div class="text-sm">Admin</div>
+      </div></label
+    >
+    <ul
+      tabindex="0"
+      class="dropdown-content z-[1] mb-1 menu p-2 shadow bg-[#E3791A] rounded-box w-52 text-black"
+    >
+      <li>
+        <a class="hover:bg-white flex gap-3">
+          <svg
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M15 16.5V19C15 20.1046 14.1046 21 13 21H6C4.89543 21 4 20.1046 4 19V5C4 3.89543 4.89543 3 6 3H13C14.1046 3 15 3.89543 15 5V8.0625M11 12H21M21 12L18.5 9.5M21 12L18.5 14.5"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+          Logout
+        </a>
+      </li>
+    </ul>
   </div>
 </div>
