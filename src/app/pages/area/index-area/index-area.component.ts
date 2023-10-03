@@ -19,6 +19,12 @@ export class IndexAreaComponent implements OnInit {
   alert: boolean = false;
   alertMsg: string = "";
 
+  config = {
+    id: 'custom',
+    itemsPerPage: 10,
+    currentPage: 1,
+  };
+
   ngOnInit() {
     this.MasterServiceService.GetArea().subscribe((res: any) => {
       this.datas = res;
