@@ -1,5 +1,6 @@
 import { MasterServiceService } from './../../../services/masterService/master-service.service';
 import { Component, OnInit } from '@angular/core';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-index-area',
@@ -8,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class IndexAreaComponent implements OnInit {
 
-  constructor(private MasterServiceService: MasterServiceService) { }
+  constructor(private MasterServiceService: MasterServiceService, private spinner: NgxSpinnerService) { }
 
   datas: any;
 
@@ -26,12 +27,13 @@ export class IndexAreaComponent implements OnInit {
   };
 
   ngOnInit() {
+    this.spinner.show();
     this.MasterServiceService.GetArea().subscribe((res: any) => {
       this.datas = res;
       this.datas.forEach((element: any) => {
         element.index = this.datas.indexOf(element) + 1;
       })
-    })
+    }, (err: any) => { }, () => { this.spinner.hide(); })
   }
 
   getDataModal(id: any) {

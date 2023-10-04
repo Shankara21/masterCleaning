@@ -1,3 +1,4 @@
+<app-spinner></app-spinner>
 <div class="toast toast-top toast-end" *ngIf="alert">
   <div class="alert alert-success">
     <svg
@@ -156,7 +157,10 @@
     </tbody>
   </table>
 </div>
-<div class="flex items-center justify-center my-5" *ngIf="datas.length >= config.itemsPerPage">
+<div
+  class="flex items-center justify-center my-5"
+  *ngIf="datas?.length >= config.itemsPerPage"
+>
   <pagination-template
     #p="paginationApi"
     [id]="config.id"

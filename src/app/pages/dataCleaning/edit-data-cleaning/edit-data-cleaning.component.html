@@ -1,1 +1,152 @@
-<p>edit-data-cleaning works!</p>
+<div class="toast toast-top toast-end" *ngIf="alert">
+  <div class="alert alert-error">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      class="w-6 h-6 stroke-current shrink-0"
+      fill="none"
+      viewBox="0 0 24 24"
+    >
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"
+      />
+    </svg>
+    <span>{{ alertMsg }}</span>
+  </div>
+</div>
+<a routerLink="/cleaning-data" class="flex items-center gap-2 mb-5 btn w-fit">
+  <img src="assets/iconBack.svg" alt="" />
+  Back
+</a>
+
+<h1 class="mb-5 text-3xl font-bold">Create new Data Cleaning</h1>
+
+<form class="my-5" [formGroup]="form" (submit)="submit()">
+  <div class="grid grid-cols-3 gap-4">
+    <div class="form-control">
+      <label class="label">
+        <span class="label-text">Area</span>
+      </label>
+      <select class="select select-bordered" formControlName="areaId">
+        <option value="{{ item?.id }}" *ngFor="let item of areas">
+          {{ item?.name }}
+        </option>
+      </select>
+    </div>
+    <div class="form-control">
+      <label class="label">
+        <span class="label-text">Description</span>
+      </label>
+      <input
+        type="text"
+        placeholder="Type here"
+        class="w-full input input-bordered"
+        formControlName="description"
+      />
+    </div>
+    <div class="form-control">
+      <label class="label">
+        <span class="label-text">Frequency</span>
+      </label>
+      <select class="select select-bordered" formControlName="frequency">
+        <option value="daily" >
+          Daily
+        </option>
+        <option value="weekly" >
+          Weekly
+        </option>
+        <option value="monthly" >
+          Monthly
+        </option>
+      </select>
+    </div>
+    <div class="form-control">
+      <label class="label">
+        <span class="label-text">Implementer</span>
+      </label>
+      <input
+        type="text"
+        placeholder="Type here"
+        class="w-full input input-bordered"
+        formControlName="implementer"
+      />
+    </div>
+    <div class="form-control">
+      <label class="label">
+        <span class="label-text">Method</span>
+      </label>
+      <input
+        type="text"
+        placeholder="Type here"
+        class="w-full input input-bordered"
+        formControlName="method"
+      />
+    </div>
+    <div class="form-control">
+      <label class="label">
+        <span class="label-text">Sanitary Equipment</span>
+      </label>
+      <input
+        type="text"
+        placeholder="Type here"
+        class="w-full input input-bordered"
+        formControlName="sanitaryEquipment"
+      />
+    </div>
+    <div class="form-control">
+      <label class="label">
+        <span class="label-text">Procedure</span>
+      </label>
+      <input
+        type="text"
+        placeholder="Type here"
+        class="w-full input input-bordered"
+        formControlName="procedure"
+      />
+    </div>
+    <div class="form-control">
+      <label class="label">
+        <span class="label-text">sanitary Material</span>
+      </label>
+      <input
+        type="text"
+        placeholder="Type here"
+        class="w-full input input-bordered"
+        formControlName="sanitaryMaterial"
+      />
+    </div>
+    <div class="form-control">
+      <label class="label">
+        <span class="label-text">Controller</span>
+      </label>
+      <input
+        type="text"
+        placeholder="Type here"
+        class="w-full input input-bordered"
+        formControlName="controller"
+      />
+    </div>
+  </div>
+  <div class="flex justify-center mt-5">
+    <button
+      type="submit"
+      class="px-5 py-2.5 relative rounded group text-white font-medium inline-block"
+    >
+      <span
+        class="absolute top-0 left-0 w-full h-full rounded opacity-50 filter blur-sm bg-gradient-to-br from-blue-600 to-blue-500"
+      ></span>
+      <span
+        class="h-full w-full inset-0 absolute mt-0.5 ml-0.5 bg-gradient-to-br filter group-active:opacity-0 rounded opacity-50 from-blue-600 to-blue-500"
+      ></span>
+      <span
+        class="absolute inset-0 w-full h-full transition-all duration-200 ease-out rounded shadow-xl bg-gradient-to-br filter group-active:opacity-0 group-hover:blur-sm from-blue-600 to-blue-500"
+      ></span>
+      <span
+        class="absolute inset-0 w-full h-full transition duration-200 ease-out rounded bg-gradient-to-br to-blue-600 from-blue-500"
+      ></span>
+      <span class="relative">Submit</span>
+    </button>
+  </div>
+</form>
