@@ -12,6 +12,8 @@ import { CreateDataCleaningComponent } from './pages/dataCleaning/create-data-cl
 import { EditDataCleaningComponent } from './pages/dataCleaning/edit-data-cleaning/edit-data-cleaning.component';
 import { ShowDataCleaningComponent } from './pages/dataCleaning/show-data-cleaning/show-data-cleaning.component';
 import { IndexChecklistComponent } from './pages/checklist/index-checklist/index-checklist.component';
+import { CreateChecklistComponent } from './pages/checklist/create-checklist/create-checklist.component';
+import { EditChecklistComponent } from './pages/checklist/edit-checklist/edit-checklist.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
@@ -27,6 +29,8 @@ const routes: Routes = [
   { path: 'cleaning-data/:id', component: ShowDataCleaningComponent },
   { path: 'cleaning-data/:id/edit', component: EditDataCleaningComponent },
   { path: 'checklist', component: IndexChecklistComponent },
+  { path: 'checklist/create', component: CreateChecklistComponent },
+  { path: 'checklist/:id/edit', component: EditChecklistComponent },
   { path: '**', redirectTo: 'dashboard', pathMatch: 'full' }
 ];
 

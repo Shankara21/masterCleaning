@@ -90,4 +90,21 @@ export class MasterServiceService {
     return this.HttpClient.delete(Environtment.baseUrl + '/data-cleaning/' + id);
   }
 
+  //checklist
+  GetChecklist() {
+    return this.HttpClient.get(Environtment.baseUrl + '/checklist');
+  }
+  ShowChecklist(id: any) {
+    return this.HttpClient.get(Environtment.baseUrl + '/checklist/' + id);
+  }
+  CreateChecklist(data: any) {
+    return this.HttpClient.post(Environtment.baseUrl + '/checklist', data);
+  }
+  UpdateChecklist(id: any, data: any) {
+    return this.HttpClient.put(Environtment.baseUrl + '/checklist/' + id, data);
+  }
+  DeleteChecklist(id: any) {
+    return this.HttpClient.delete(Environtment.baseUrl + '/checklist/' + id);
+  }
+
 }
