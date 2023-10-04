@@ -66,6 +66,12 @@ export class MasterServiceService {
   DeleteUser(id: any) {
     return this.HttpClient.delete(Environtment.baseUrl + '/user/' + id);
   }
+  GetListNik() {
+    return this.HttpClient.get(Environtment.baseUrl + '/user/list-nik');
+  }
+  ShowByNik(nik: any) {
+    return this.HttpClient.get(Environtment.baseUrl + '/user/nik/' + nik);
+  }
 
   // data cleaning
   GetDataCleaning() {
@@ -83,5 +89,5 @@ export class MasterServiceService {
   DeleteDataCleaning(id: any) {
     return this.HttpClient.delete(Environtment.baseUrl + '/data-cleaning/' + id);
   }
-  
+
 }
