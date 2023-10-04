@@ -154,6 +154,9 @@
           </div>
         </td>
       </tr>
+      <tr *ngIf="!datas?.length">
+        <td colspan="3" class="px-6 py-4 text-center font-semibold">No data found</td>
+      </tr>
     </tbody>
   </table>
 </div>
