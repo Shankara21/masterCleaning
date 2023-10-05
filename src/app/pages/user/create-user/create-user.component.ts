@@ -30,12 +30,14 @@ export class CreateUserComponent implements OnInit {
       this.roles = res;
     })
     this.MasterServiceService.GetListNik().subscribe((res: any) => {
-      this.listUsers = res;
+      this.listUsers = res;      
     }, (err: any) => { }, () => { this.spinner.hide() });
   }
 
   onChangeNik(e: any) {
     this.MasterServiceService.ShowByNik(e.target.value).subscribe((res: any) => {
+
+      
       this.form.patchValue({
         nik: res[0].lg_nik,
         name: res[0].lg_name
