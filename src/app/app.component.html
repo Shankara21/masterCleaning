@@ -1,8 +1,14 @@
-<div class="flex gap-3 m-1">
+<div class="flex gap-3 m-1" *ngIf="router.url != '/login'">
   <div class="w-[15%]">
     <app-sidebar></app-sidebar>
   </div>
   <div class="flex-1 mx-3 mt-3 overflow-hidden">
     <router-outlet></router-outlet>
   </div>
+</div>
+<div
+  *ngIf="router.url == '/login'"
+  class="flex justify-center items-center h-screen w-screen overflow-hidden"
+>
+  <router-outlet></router-outlet>
 </div>

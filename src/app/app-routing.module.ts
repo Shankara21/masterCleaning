@@ -14,10 +14,12 @@ import { ShowDataCleaningComponent } from './pages/dataCleaning/show-data-cleani
 import { IndexChecklistComponent } from './pages/checklist/index-checklist/index-checklist.component';
 import { CreateChecklistComponent } from './pages/checklist/create-checklist/create-checklist.component';
 import { EditChecklistComponent } from './pages/checklist/edit-checklist/edit-checklist.component';
+import { AuthComponent } from './pages/auth/auth.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
   { path: 'dashboard', component: DashboardComponent },
+  { path: 'login', component: AuthComponent },
   { path: 'area', component: IndexAreaComponent },
   { path: 'area/create', component: CreateAreaComponent },
   { path: 'area/:id/edit', component: EditAreaComponent },
