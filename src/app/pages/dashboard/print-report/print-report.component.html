@@ -36,10 +36,14 @@
           </tr>
           <tr class="border">
             <td colspan="" class="px-1.5 py-1 text-start border">Area</td>
-            <td colspan="3" class="px-1.5 py-1 text-start border">{{areaFilter}}</td>
+            <td colspan="3" class="px-1.5 py-1 text-start border">{{areaFilter}}           
+            </td>
           </tr>
         </tbody>
       </table>
+      <!-- <a [routerLink]="['/dashboard/print']" [queryParams]="{date:monthYearFilter, area:areaFilter}"   class="px-4 py-1.5 cursor-pointer font-semibold rounded-md bg-blue-600 text-white h-fit">
+        Print PDF
+      </a> -->
     </div>
     <div class="relative border overflow-x-auto">
       <table class="w-full text-sm text-left text-gray-500">
@@ -53,7 +57,7 @@
         </thead>
         <tbody>
           <tr *ngFor="let item of dataCleanings;index as ii" class="border">
-            <td class="px-2 py-1.5 text-center border">{{ item.id }}</td>
+            <td class="px-2 py-1.5 text-center border">{{ ii + 1 }}</td>
             <td class="px-2 py-1.5 text-center border">{{ item.description }}</td>
             <td class="px-2 py-1.5 text-center border">{{ item.frequency}}</td>
             <td *ngFor="let item of dateArray;index as i" class="px-2 py-1.5 text-center border">

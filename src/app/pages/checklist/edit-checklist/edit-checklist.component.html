@@ -44,7 +44,7 @@
 
 <form *ngIf="form" [formGroup]="form" (submit)="submit()">
   <!-- filter -->
-  <div class="grid grid-cols-3 gap-4">
+  <div class="grid md:grid-cols-3 gap-4">
     <div class="form-control">
       <label class="label">
         <span class="label-text">User</span>
@@ -78,10 +78,10 @@
   </div>
 
   <!-- data -->
-  <div class="grid grid-cols-2 gap-y-1 gap-x-10" formArrayName="checklistDetails">
-    <div *ngFor="let item of filterDataCleaning;index as i" [formGroupName]="i" class="grid grid-cols-3 gap-3">
+  <div class="grid md:grid-cols-2 gap-y-1 gap-x-10" formArrayName="checklistDetails">
+    <div *ngFor="let item of filterDataCleaning;index as i" [formGroupName]="i" class="grid md:grid-cols-3 grid-flow-col gap-3">
       <div class="form-control">
-        <label class="label" *ngIf="i == 0 || i == 1">
+        <label class="label" *ngIf="i == 0 || i == 1" [ngClass]="i==1? 'max-md:hidden' : ''">
           <span class="label-text">Description</span>
         </label>
         <input
@@ -91,19 +91,19 @@
           disabled
         />
       </div>
-      <div class="form-control">
-        <label class="label"  *ngIf="i == 0 || i == 1">
+      <div class="form-control flex max-md:w-fit">
+        <label class="label"  *ngIf="i == 0 || i == 1" [ngClass]="i==1? 'max-md:hidden' : ''">
           <span class="label-text">Freq</span>
         </label>
         <input
           type="text"
-          class="input input-bordered w-full"
+          class="input input-bordered max-md:w-24"
           [value]="item.frequency"
           disabled
         />
       </div>
-      <div class="form-control flex justify-center">
-        <label class="label"  *ngIf="i == 0 || i == 1">
+      <div class="form-control flex justify-center max-md:w-fit" >
+        <label class="label"  *ngIf="i == 0 || i == 1" [ngClass]="i==1? 'max-md:hidden' : ''">
           <span class="label-text">Status </span>
         </label>
         

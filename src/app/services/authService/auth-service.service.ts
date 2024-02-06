@@ -22,6 +22,9 @@ export class AuthServiceService {
   Login(data: any) {
     return this.HttpClient.post(Environtment.baseUrl + '/auth/login', data);
   }
+  LoginOs(data: any) {
+    return this.HttpClient.post(Environtment.baseUrl + '/auth/loginOs', data);
+  }
 
   // SetToken
   SetToken(token: string) {

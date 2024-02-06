@@ -24,6 +24,7 @@ export class DashboardComponent  {
   areaFilter: any = 'General'
 
   dataCleanings:any[] = []
+  dataCleaningFilter:any[] = []
   dataReportMonthlys:any[] = []
   dataAreas:any[] = []
   dailyChecklistCount: number = 0;
@@ -42,6 +43,7 @@ export class DashboardComponent  {
       this.dataReportMonthlys = res[0];
       this.dataCleanings = res[1];
       this.dataAreas = res[2];
+      this.dataCleaningFilter = this.dataCleanings
       
     })
     this.subscription = timer(0, 1000)
@@ -89,6 +91,13 @@ export class DashboardComponent  {
       );
 
   }
+  
+  changeArea(){
+    this.dataCleaningFilter = this.filterArea()
+  }
+  filterArea(){
+    return this.dataCleanings.filter(data=>data.mst_area.name == this.areaFilter)
+  }
 
   changeFilter(){
     this.dateFilter = new Date(this.monthYearFilter)
@@ -102,6 +111,7 @@ export class DashboardComponent  {
     this.masterService.GetChecklistReportMonthly(this.dateFilter.getMonth()+1,this.dateFilter.getFullYear(),this.areaFilter).subscribe(data=> {
       this.dataReportMonthlys = data
     })
+    this.dataCleaningFilter = this.filterArea()
   }
 
   getChecklistByDate(date:number){

@@ -21,6 +21,7 @@ openDatePicker: any;
   users: any;
   areas: any;
   dataCleaning: any[] = [];
+  dataCleaningFilter: any[] = [];
   checklistLastWeek: any;
   checklistLastMonth: any;
 
@@ -57,6 +58,7 @@ openDatePicker: any;
       this.dataCleaning = res[2];
       this.checklistLastWeek = res[3];
       this.checklistLastMonth = res[4];
+      this.dataCleaningFilter = this.dataCleaning
 
 //       // Tambahkan periksaan rentang waktu mingguan dan bulanan di sini     
 //       const startDateMonthly: Moment = moment().startOf('month');
@@ -103,6 +105,15 @@ openDatePicker: any;
       });
       console.log(this.form.value);
     }, (err: any) => { }, () => { this.spinner.hide() });
+  }
+  
+  changeArea(){
+    console.log();
+    this.form.value.areaId
+    this.dataCleaningFilter = this.filterArea()
+  }
+  filterArea(){
+    return this.dataCleaning.filter(data=>data.mst_area.id == this.form.value.areaId)
   }
 
   submit() {

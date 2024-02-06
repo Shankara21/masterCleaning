@@ -26,7 +26,7 @@
 <h1 class="mb-5 text-3xl font-bold">Create new Checklist</h1>
 
 <form [formGroup]="form" (submit)="submit()">
-  <div class="grid grid-cols-3 gap-4">
+  <div class="grid grid-flow-row md:grid-cols-3 gap-4">
     <div class="form-control">
       <label class="label">
         <span class="label-text">User</span>
@@ -41,7 +41,7 @@
       <label class="label">
         <span class="label-text">Area</span>
       </label>
-      <select class="select select-bordered" formControlName="areaId">
+      <select (change)="changeArea()" class="select select-bordered" formControlName="areaId">
         <option value="{{ item?.id }}" *ngFor="let item of areas">
           {{ item.name }}
         </option>
@@ -59,10 +59,10 @@
     </div>
   </div>
 
-  <div class="grid grid-cols-2 gap-y-1 gap-x-10" formArrayName="checklistDetails">
-    <div *ngFor="let item of dataCleaning;index as i" [formGroupName]="i" class="grid grid-cols-3 gap-3">
+  <div class="grid md:grid-cols-2  gap-y-1 gap-x-10" formArrayName="checklistDetails">
+    <div *ngFor="let item of dataCleaningFilter;index as i" [formGroupName]="i" class="grid md:grid-cols-3 grid-flow-col gap-3">
       <div class="form-control">
-        <label class="label" *ngIf="i == 0 || i == 1">
+        <label class="label" *ngIf="i == 0 || i == 1"  [ngClass]="i==1? 'max-md:hidden' : ''">
           <span class="label-text">Description</span>
         </label>
         <input
@@ -72,20 +72,20 @@
           disabled
         />
       </div>
-      <div class="form-control">
-        <label class="label"  *ngIf="i == 0 || i == 1">
+      <div class="form-control flex max-md:w-fit">
+        <label class="label" *ngIf="i == 0 || i == 1"  [ngClass]="i==1? 'max-md:hidden' : ''">
           <span class="label-text">Freq</span>
         </label>
         <input
           type="text"
-          class="input input-bordered w-full"
+          class="input input-bordered max-md:w-24"
           [value]="item.frequency"
           disabled
         />
       </div>
-      <div class="form-control flex justify-center">
-        <label class="label"  *ngIf="i == 0 || i == 1">
-          <span class="label-text">Status </span>
+      <div class="form-control flex justify-center max-md:w-fit" >
+        <label class="label"  *ngIf="i == 0 || i == 1"  [ngClass]="i==1? 'max-md:hidden' : ''">
+          <span class="label-text">Status</span>
         </label>
         
         <input formControlName="status" id="checked-checkbox" type="checkbox" class="w-4 h-4 my-auto mx-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">

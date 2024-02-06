@@ -20,9 +20,9 @@
 
 
 <!-- Count status -->
-<div class="flex justify-evenly mb-4">
+<div class="flex justify-evenly max-md:flex-col mb-4">
   <div class="card shadow-xl">
-    <div class="card-body">
+    <div class="card-body ">
       <div class="flex justify-center items-center min-h-full gap-4">
         <img src="assets/day.png" class="w-16" alt="" />
         <div class="flex flex-col">
@@ -58,7 +58,7 @@
 <!-- End of Count status -->
 
 <!-- REPORT MONTHLY -->
-<div class="py-4 text-center ">
+<div class="py-4 text-center max-md:flex max-md:flex-col">
   <h1 class="text-2xl font-semibold">Monthly Report</h1>
   <!-- MONTH FILTERING -->
   <div class="flex justify-between items-end py-2">
@@ -98,7 +98,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let item of dataCleanings;index as ii">
+        <tr *ngFor="let item of dataCleaningFilter;index as ii">
           <td class="px-6 py-4 text-center">{{ item.id }}</td>
           <td class="px-6 py-4 text-center">{{ item.description }}</td>
           <td class="px-6 py-4 text-center">{{ item.frequency}}</td>

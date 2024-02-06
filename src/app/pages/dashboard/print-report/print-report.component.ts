@@ -32,6 +32,9 @@ export class PrintReportComponent {
     forkJoin(this.masterService.GetChecklistReportMonthly(new Date(this.monthYearFilter).getMonth()+1,new Date(this.monthYearFilter).getFullYear(),this.areaFilter),this.masterService.GetDataCleaning()).subscribe(res=>{
       this.dataReportMonthlys = res[0];
       this.dataCleanings = res[1];
+      this.dataCleanings = this.dataCleanings.filter(data=>data.mst_area.name == this.areaFilter)
+      console.log(this.dataCleanings);
+      
       
     })
     this.subscription = timer(0, 1000)

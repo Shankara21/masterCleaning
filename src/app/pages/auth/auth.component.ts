@@ -17,6 +17,8 @@ export class AuthComponent {
   alert: boolean = false;
   alertMsg: string = "";
 
+  selectLogin:string = "AIO";
+
   form = new FormGroup({
     nik: new FormControl('',[Validators.required]),
     password: new FormControl('',[Validators.required])
@@ -29,6 +31,8 @@ export class AuthComponent {
   login() {
     // Perform authentication logic here
     console.log(this.form.value);
+    console.log(this.selectLogin);
+    
 
     if (this.form.invalid) {
       this.alert = true;
@@ -39,29 +43,48 @@ export class AuthComponent {
       }, 3000);
       return
     } else {
-      this.authService.Login(this.form.value).subscribe((data:any)=>{
-        console.log(data);
-        this.authService.SetToken(data.token)
-        this.masterService.ShowUserByNik(data.user.nik).subscribe((user)=>{
-          console.log(user);
-          this.authService.SetUser(user)
+      if(this.selectLogin == "AIO"){
+        this.authService.Login(this.form.value).subscribe((data:any)=>{
+          console.log(data);
+          this.authService.SetToken(data.token)
+          this.masterService.ShowUserByNik(data.user.nik).subscribe((user)=>{
+            console.log(user);
+            this.authService.SetUser(user)
+          })   
+          
+        console.log("login Sucees!");
+        
+        this.router.navigate(['/dashboard']);
+        },err=>{
+          console.log(err);
+          this.alert = true;
+        this.alertMsg = "Login Gagal!";
+       
         })
+      }else {
+        this.authService.LoginOs(this.form.value).subscribe((data:any)=>{
+          console.log(data);
+          this.authService.SetToken(data.token)
+          this.masterService.ShowUserByNik(data.user.nik).subscribe((user)=>{
+            console.log(user);
+            this.authService.SetUser(user)
+          })   
+          
+        console.log("login Sucees!");
         
-        
-      console.log("login Sucees!");
-      
-      this.router.navigate(['/dashboard']);
-      },err=>{
-        console.log(err);
-        this.alert = true;
-      this.alertMsg = "Login Gagal!";
+        this.router.navigate(['/dashboard']);
+        },err=>{
+          console.log(err);
+          this.alert = true;
+        this.alertMsg = "Login Gagal!";
+       
+        })
+      }
+
       setTimeout(() => {
         this.alert = false;
         this.alertMsg = "";
       }, 3000);
-      })
-
-      
     }
     
     if (this.nik === 'validNik' && this.password === 'validPassword') {
