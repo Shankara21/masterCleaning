@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "masterCleaning": {
+    "master-cleaning": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -61,10 +61,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "masterCleaning:build:production"
+              "browserTarget": "master-cleaning:build:production"
             },
             "development": {
-              "browserTarget": "masterCleaning:build:development"
+              "browserTarget": "master-cleaning:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -72,7 +72,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "masterCleaning:build"
+            "browserTarget": "master-cleaning:build"
           }
         },
         "test": {

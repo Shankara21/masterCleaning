@@ -4,12 +4,13 @@ import { catchError, Observable, throwError } from 'rxjs';
 import { DOCUMENT } from '@angular/common';
 import { CookieService } from 'ngx-cookie-service';
 import { Environtment } from 'src/app/environtment';
+import { MasterServiceService } from '../masterService/master-service.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthServiceService {
-  constructor(private HttpClient: HttpClient, private cookieService: CookieService, @Inject(DOCUMENT) private document: Document) { }
+  constructor(private HttpClient: HttpClient, private cookieService: CookieService, @Inject(DOCUMENT) private document: Document,private masterService : MasterServiceService) { }
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json'
@@ -27,6 +28,16 @@ export class AuthServiceService {
     this.cookieService.delete('MasterCleaningToken');
     this.cookieService.set('MasterCleaningToken', token, 8 / 24);
   }
+  SetUser(user:any){
+    localStorage.setItem('UserData', JSON.stringify(user))
+  }
+  GetUser(){
+    const user = window.localStorage.getItem('UserData')
+    if(user){
+      return JSON.parse(user)
+    }
+    return {}
+  }
   // GetToken
   GetToken() {
     return this.cookieService.get('MasterCleaningToken');
@@ -39,6 +50,7 @@ export class AuthServiceService {
 
   // DeleteToken
   DeleteToken() {
+    localStorage.clear()
     this.cookieService.delete('MasterCleaningToken');
   }
 
@@ -52,4 +64,15 @@ export class AuthServiceService {
       return null;
     }
   }
+
+  // GetUserName
+  GetUserName() {
+    const payload = this.GetPayload();
+    if (payload) {
+      return payload.name;
+    } else {
+      return '';
+    }
+  }
+  
 }

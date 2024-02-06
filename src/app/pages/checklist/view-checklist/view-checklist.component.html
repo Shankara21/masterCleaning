@@ -1,0 +1,87 @@
+<app-spinner></app-spinner>
+
+<div class="toast toast-top toast-end" *ngIf="alert">
+  <div class="alert alert-error">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      class="w-6 h-6 stroke-current shrink-0"
+      fill="none"
+      viewBox="0 0 24 24"
+    >
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"
+      />
+    </svg>
+    <!-- <span>{{ alertMsg }}</span> -->
+  </div>
+</div>
+<a routerLink="/checklist" class="flex items-center gap-2 mb-5 btn w-fit">
+  <img src="assets/iconBack.svg" alt="" />
+  Back
+</a>
+
+<h1 class="mb-5 text-3xl font-bold">View Checklist</h1>
+
+<div class="w-1/2 mx-auto flex flex-col py-4">
+    <!-- <div class="w-3/4 mx-auto flex gap-x-3 text-lg border px-2">
+        <h1 class="w-1/6">Id :</h1>
+        
+        <h1 class="font-medium">: {{dataChecklist.id}}</h1>
+    </div> -->
+    <div class="w-3/4 mx-auto flex gap-x-3 text-lg border px-2">
+        <h1 class="w-1/6">PIC</h1>
+        
+        <h1 class="font-medium">: {{dataChecklist?.mst_user.name}}</h1>
+    </div>
+    <div class="w-3/4 mx-auto flex gap-x-3 text-lg border px-2">
+        <h1 class="w-1/6">Area</h1>
+        
+        <h1 class="font-medium">: {{dataChecklist?.mst_area.name}}</h1>
+    </div>
+    <div class="w-3/4 mx-auto flex gap-x-3 text-lg border px-2">
+        <h1 class="w-1/6">Date</h1>
+        
+        <h1 class="font-medium">: {{dataChecklist?.date}}</h1>
+    </div>
+</div>
+
+<div class="mx-auto w-4/5 overflow-x-auto shadow-md sm:rounded-lg rounded-xl border mb-10">
+    <table class="w-full text-sm text-left text-gray-500">
+      <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+        <tr>
+          <th scope="col" class="px-6 py-3 text-center">Id</th>
+          <th scope="col" class="px-6 py-3 text-center">Checklist Id</th>
+          <th scope="col" class="px-6 py-3 text-center">Description</th>
+          <th scope="col" class="px-6 py-3 text-center">Frequency</th>
+          <th scope="col" class="px-6 py-3 text-center">Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          *ngFor="let item of dataChecklist?.tr_checklistdetails "
+          class="bg-white border-b"
+        >
+          <th
+            scope="row"
+            class="px-6 py-4 font-medium text-center text-gray-900 whitespace-nowrap"
+          >
+            {{ item.id }}
+          </th>
+          <td class="px-6 py-4 text-center">{{ item.checklistId }}</td>
+          <td class="px-6 py-4 text-center">{{ item.mst_datacleaning.description}}</td>
+          <td class="px-6 py-4 text-center">{{ item.mst_datacleaning.frequency }}</td>
+          <td class="px-6 py-4 text-center">
+            <svg *ngIf="item.status == true" xmlns="http://www.w3.org/2000/svg" fill="green" height="24" viewBox="0 -960 960 960" width="24"><path d="M382-240 154-468l57-57 171 171 367-367 57 57-424 424Z"/></svg>
+            <svg  *ngIf="item.status != true" xmlns="http://www.w3.org/2000/svg" fill="red" height="24" viewBox="0 -960 960 960" width="24"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg>
+          </td>
+        </tr>
+        <tr *ngIf="!dataChecklist?.tr_checklistdetails?.length">
+          <td colspan="3" class="px-6 py-4 text-center font-semibold">No data found</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+<!--  -->

@@ -1,16 +1,33 @@
-<h1 class="text-3xl font-bold  mb-10 text-center">
+<app-spinner></app-spinner>
+
+<h1 class="text-3xl font-bold  mb-5 text-center">
   Welcome to Master Cleaning Dashboard
 </h1>
 
-<!-- Count status -->
-<div class="flex justify-evenly">
+<!-- date timel -->
+<div class="flex justify-evenly mb-4">
   <div class="card shadow-xl">
     <div class="card-body">
-      <div class="flex justify-center items-center h-full gap-4">
+      <div class="flex justify-center items-stretch, h-full gap-10">
+        <div class="flex flex-col">
+          <p class="text-xl">{{ rxTime | date: 'medium' }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- Count status -->
+<div class="flex justify-evenly mb-4">
+  <div class="card shadow-xl">
+    <div class="card-body">
+      <div class="flex justify-center items-center min-h-full gap-4">
         <img src="assets/day.png" class="w-16" alt="" />
         <div class="flex flex-col">
           <p class="text-xl">Daily Checklist Amount</p>
-          <p class="text-2xl font-bold">0</p>
+          <p class="text-2xl font-bold">{{ dailyChecklistCount }}</p>
         </div>
       </div>
     </div>
@@ -21,7 +38,7 @@
         <img src="assets/week.png" class="w-16" alt="" />
         <div class="flex flex-col">
           <p class="text-xl">Weekly Checklist Amount</p>
-          <p class="text-2xl font-bold">0</p>
+          <p class="text-2xl font-bold">{{ weeklyChecklistCount }}</p>
         </div>
       </div>
     </div>
@@ -32,10 +49,73 @@
         <img src="assets/month.png" class="w-16" alt="" />
         <div class="flex flex-col">
           <p class="text-xl">Monthly Checklist Amount</p>
-          <p class="text-2xl font-bold">0</p>
+          <p class="text-2xl font-bold">{{monthlyChecklistCount}}</p>
         </div>
       </div>
     </div>
   </div>
 </div>
 <!-- End of Count status -->
+
+<!-- REPORT MONTHLY -->
+<div class="py-4 text-center ">
+  <h1 class="text-2xl font-semibold">Monthly Report</h1>
+  <!-- MONTH FILTERING -->
+  <div class="flex justify-between items-end py-2">
+    <div class="flex gap-3">
+      <div class=" form-control">
+        <label class="label">
+          <span class="label-text">Month Filter</span>
+        </label>
+        <input (change)="changeFilter()" type="month" class="input input-bordered w-full" [(ngModel)]="monthYearFilter" />
+      </div>
+      <div class=" form-control">
+        <label class="label">
+          <span class="label-text">Area Filter</span>
+        </label>
+        <select class="select select-bordered" (change)="changeAreaFilter()" [(ngModel)]="areaFilter">
+          <option value="{{ item.name }}" *ngFor="let item of dataAreas">
+            {{ item.name }}
+          </option>
+        </select>
+      </div>
+    </div>
+    
+    <a [routerLink]="['/dashboard/print']" [queryParams]="{date:monthYearFilter, area:areaFilter}"   class="px-4 py-1.5 cursor-pointer font-semibold rounded-md bg-blue-600 text-white h-fit">
+      Print PDF
+    </a>
+    
+  </div>
+  <!-- TABLE REPORT MONTHLY -->
+  <div class="relative border overflow-x-auto shadow-md sm:rounded-lg rounded-xl">
+    <table class="w-full text-sm text-left text-gray-500">
+      <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+        <tr>
+          <th scope="col" class="px-6 py-3 text-center">No</th>
+          <th scope="col" class="px-6 py-3 text-center">Description</th>
+          <th scope="col" class="px-6 py-3 text-center">Frequency</th>
+          <th *ngFor="let item of dateArray;index as i" scope="col" class="px-6 py-3 text-center">{{i+1}}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of dataCleanings;index as ii">
+          <td class="px-6 py-4 text-center">{{ item.id }}</td>
+          <td class="px-6 py-4 text-center">{{ item.description }}</td>
+          <td class="px-6 py-4 text-center">{{ item.frequency}}</td>
+          <td *ngFor="let item of dateArray;index as i" class="px-6 py-4 text-center">
+            <!-- {{this.getChecklistByDate(i+1)?.tr_checklistdetails[ii].status}} -->
+            <svg *ngIf="this.getChecklistByDate(i+1)?.tr_checklistdetails[ii].status  == true"
+              xmlns="http://www.w3.org/2000/svg" fill="green" height="24" viewBox="0 -960 960 960" width="24">
+              <path d="M382-240 154-468l57-57 171 171 367-367 57 57-424 424Z" />
+            </svg>
+            <svg *ngIf="this.getChecklistByDate(i+1)?.tr_checklistdetails[ii].status  != true"
+              xmlns="http://www.w3.org/2000/svg" fill="red" height="24" viewBox="0 -960 960 960" width="24">
+              <path
+                d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z" />
+            </svg>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

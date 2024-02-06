@@ -1,3 +1,4 @@
+import { AuthServiceService } from 'src/app/services/authService/auth-service.service';
 import { MasterServiceService } from './../../../services/masterService/master-service.service';
 import { Component, OnInit } from '@angular/core';
 
@@ -8,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class IndexDataCleaningComponent implements OnInit {
 
-  constructor(private MasterServiceService: MasterServiceService) { }
+  constructor(private MasterServiceService: MasterServiceService, public authService:AuthServiceService) { }
 
   datas: any;
   search: any;

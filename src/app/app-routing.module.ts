@@ -15,24 +15,37 @@ import { IndexChecklistComponent } from './pages/checklist/index-checklist/index
 import { CreateChecklistComponent } from './pages/checklist/create-checklist/create-checklist.component';
 import { EditChecklistComponent } from './pages/checklist/edit-checklist/edit-checklist.component';
 import { AuthComponent } from './pages/auth/auth.component';
+import { ViewChecklistComponent } from './pages/checklist/view-checklist/view-checklist.component';
+import { AuthenticationGuard } from './middleware/authentication/authentication.guard';
+import { NoAuthenticationGuard } from './middleware/authentication/no-authentication.guard';
+import { PrintReportComponent } from './pages/dashboard/print-report/print-report.component';
+import { IndexRoleComponent } from './pages/role/index-role/index-role.component';
+import { CreateRoleComponent } from './pages/role/create-role/create-role.component';
+import { EditRoleComponent } from './pages/role/edit-role/edit-role.component';
+
 
 const routes: Routes = [
   { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
-  { path: 'dashboard', component: DashboardComponent },
-  { path: 'login', component: AuthComponent },
-  { path: 'area', component: IndexAreaComponent },
-  { path: 'area/create', component: CreateAreaComponent },
-  { path: 'area/:id/edit', component: EditAreaComponent },
-  { path: 'user', component: IndexUserComponent },
-  { path: 'user/create', component: CreateUserComponent },
-  { path: 'user/:id/edit', component: EditUserComponent },
-  { path: 'cleaning-data', component: IndexDataCleaningComponent },
-  { path: 'cleaning-data/create', component: CreateDataCleaningComponent },
-  { path: 'cleaning-data/:id', component: ShowDataCleaningComponent },
-  { path: 'cleaning-data/:id/edit', component: EditDataCleaningComponent },
-  { path: 'checklist', component: IndexChecklistComponent },
-  { path: 'checklist/create', component: CreateChecklistComponent },
-  { path: 'checklist/:id/edit', component: EditChecklistComponent },
+  { path: 'dashboard', component: DashboardComponent, canActivate: [AuthenticationGuard] },
+  { path: 'dashboard/print', component: PrintReportComponent, canActivate: [AuthenticationGuard] },
+  { path: 'login', component: AuthComponent,canActivate:[NoAuthenticationGuard]  },
+  { path: 'area', component: IndexAreaComponent, canActivate: [AuthenticationGuard] },
+  { path: 'area/create', component: CreateAreaComponent, canActivate: [AuthenticationGuard] },
+  { path: 'area/:id/edit', component: EditAreaComponent, canActivate: [AuthenticationGuard] },
+  { path: 'user', component: IndexUserComponent, canActivate: [AuthenticationGuard] },
+  { path: 'user/create', component: CreateUserComponent, canActivate: [AuthenticationGuard] },
+  { path: 'user/:id/edit', component: EditUserComponent, canActivate: [AuthenticationGuard] },
+  { path: 'role', component: IndexRoleComponent, canActivate: [AuthenticationGuard]},
+  { path: 'role/create', component: CreateRoleComponent, canActivate: [AuthenticationGuard]},
+  { path: 'role/:id/edit', component: EditRoleComponent, canActivate: [AuthenticationGuard]},
+  { path: 'cleaning-data', component: IndexDataCleaningComponent, canActivate: [AuthenticationGuard] },
+  { path: 'cleaning-data/create', component: CreateDataCleaningComponent, canActivate: [AuthenticationGuard] },
+  { path: 'cleaning-data/:id', component: ShowDataCleaningComponent, canActivate: [AuthenticationGuard] },
+  { path: 'cleaning-data/:id/edit', component: EditDataCleaningComponent, canActivate: [AuthenticationGuard] },
+  { path: 'checklist', component: IndexChecklistComponent, canActivate: [AuthenticationGuard] },
+  { path: 'checklist/create', component: CreateChecklistComponent, canActivate: [AuthenticationGuard] },
+  { path: 'checklist/:id/edit', component: EditChecklistComponent, canActivate: [AuthenticationGuard] },
+  { path: 'checklist/:id/view', component: ViewChecklistComponent, canActivate: [AuthenticationGuard] },
   { path: '**', redirectTo: 'dashboard', pathMatch: 'full' }
 ];
 

@@ -17,7 +17,7 @@ export class MasterServiceService {
   }
 
   // Area
-  GetArea() {
+  GetArea():Observable<any> {
     return this.HttpClient.get(Environtment.baseUrl + '/area');
   }
   ShowArea(id: any) {
@@ -72,9 +72,12 @@ export class MasterServiceService {
   ShowByNik(nik: any) {
     return this.HttpClient.get(Environtment.baseUrl + '/user/nik/' + nik);
   }
+  ShowUserByNik(nik: any) {
+    return this.HttpClient.get(Environtment.baseUrl + '/user/user/' + nik);
+  }
 
   // data cleaning
-  GetDataCleaning() {
+  GetDataCleaning():Observable<any>  {
     return this.HttpClient.get(Environtment.baseUrl + '/data-cleaning');
   }
   ShowDataCleaning(id: any) {
@@ -94,10 +97,19 @@ export class MasterServiceService {
   GetChecklist() {
     return this.HttpClient.get(Environtment.baseUrl + '/checklist');
   }
-  ShowChecklist(id: any) {
+  GetChecklistWeekly() {
+    return this.HttpClient.get(Environtment.baseUrl + '/checklist/last/week');
+  }
+  GetChecklistMonthly() {
+    return this.HttpClient.get(Environtment.baseUrl + '/checklist/last/month');
+  }
+  GetChecklistReportMonthly(month:number,year:number,area:string):Observable<any> {
+    return this.HttpClient.get(Environtment.baseUrl + '/checklist/report/monthly/'+month+'/'+year+'/'+area);
+  }
+  ShowChecklist(id: any) {   
     return this.HttpClient.get(Environtment.baseUrl + '/checklist/' + id);
   }
-  CreateChecklist(data: any) {
+  CreateChecklist(data: any) {    
     return this.HttpClient.post(Environtment.baseUrl + '/checklist', data);
   }
   UpdateChecklist(id: any, data: any) {
@@ -105,6 +117,17 @@ export class MasterServiceService {
   }
   DeleteChecklist(id: any) {
     return this.HttpClient.delete(Environtment.baseUrl + '/checklist/' + id);
+  } 
+
+  //count checklist
+  getDailyChecklistCount() {
+    return this.HttpClient.get(Environtment.baseUrl + '/count/daily-checklist-count'); 
+  }
+  getWeeklyChecklistCount() {
+    return this.HttpClient.get(Environtment.baseUrl + '/count/weekly-checklist-count'); 
+  }
+  getMonthlyChecklistCount() {
+    return this.HttpClient.get(Environtment.baseUrl + '/count/monthly-checklist-count'); 
   }
 
 }

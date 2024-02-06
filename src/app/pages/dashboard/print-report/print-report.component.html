@@ -1,0 +1,96 @@
+<div class="py-4 text-center ">
+    <!-- TABLE REPORT MONTHLY -->
+    <div class="relative border overflow-x-auto">
+      <table class="w-full text-sm text-left text-gray-900">
+        <tbody class="">
+          <tr  class="border">
+            <td rowspan="6" class="w-1/5 px-1.5 py-1 text-center border">
+              <img src="assets/logodoc.png" alt="AIO Logo" class="w-full h-auto" />
+            </td>
+            <td rowspan="6" class="px-1.5 py-1 text-center text-3xl font-bold border">MASTER CLEANING PROGRAM</td>
+            <td class="w-[12%] px-1.5 py-1 text-start border">Halaman</td>
+            <td class="w-[12%] px-1.5 py-1 text-start border">: 1 dari 1</td>
+          </tr>
+          <tr  class="border">
+            <td class="px-1.5 py-1 text-start border">No. Dokumen</td>
+            <td class="px-1.5 py-1 text-start border">: FR/K/E-2/PRD/SJ/012</td>
+          </tr>
+          <tr  class="border">
+            <td class="px-1.5 py-1 text-start border">Tanggal</td>
+            <td class="px-1.5 py-1 text-start border">: 26 Februari 2018</td>
+          </tr>
+          <tr  class="border">
+            <td class="px-1.5 py-1 text-start border">No. Revisi</td>
+            <td class="px-1.5 py-1 text-start border">: 00</td>
+          </tr>
+          <tr  class="border">
+            <td class="px-1.5 py-1 text-start border">Menggantikan No.</td>
+            <td class="px-1.5 py-1 text-start border">: -</td>
+          </tr>
+          <tr  class="border">
+            <td class="px-1.5 py-1 text-start border">Tanggal</td>
+            <td class="px-1.5 py-1 text-start border">: -</td>
+          </tr>
+          <tr class="border">
+            <td colspan="4" class="px-1.5 py-1 text-start border">{{monthYearFilter | date: 'MMMM - yyyy'}}</td>
+          </tr>
+          <tr class="border">
+            <td colspan="" class="px-1.5 py-1 text-start border">Area</td>
+            <td colspan="3" class="px-1.5 py-1 text-start border">{{areaFilter}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="relative border overflow-x-auto">
+      <table class="w-full text-sm text-left text-gray-500">
+        <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+          <tr>
+            <th scope="col" class="px-3 py-1.5 text-center">No</th>
+            <th scope="col" class="px-3 py-1.5 text-center">Description</th>
+            <th scope="col" class="px-3 py-1.5 text-center">Frequency</th>
+            <th *ngFor="let item of dateArray;index as i" scope="col" class="px-3 py-1.5 text-center">{{i+1}}</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of dataCleanings;index as ii" class="border">
+            <td class="px-2 py-1.5 text-center border">{{ item.id }}</td>
+            <td class="px-2 py-1.5 text-center border">{{ item.description }}</td>
+            <td class="px-2 py-1.5 text-center border">{{ item.frequency}}</td>
+            <td *ngFor="let item of dateArray;index as i" class="px-2 py-1.5 text-center border">
+              <!-- {{this.getChecklistByDate(i+1)?.tr_checklistdetails[ii].status}} -->
+              <svg *ngIf="this.getChecklistByDate(i+1)?.tr_checklistdetails[ii].status  == true"
+                xmlns="http://www.w3.org/2000/svg" fill="green" height="24" viewBox="0 -960 960 960" width="24">
+                <path d="M382-240 154-468l57-57 171 171 367-367 57 57-424 424Z" />
+              </svg>
+              <svg *ngIf="this.getChecklistByDate(i+1)?.tr_checklistdetails[ii].status  != true"
+                xmlns="http://www.w3.org/2000/svg" fill="red" height="24" viewBox="0 -960 960 960" width="24">
+                <path
+                  d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z" />
+              </svg>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="relative border overflow-x-auto mt-5">
+        <table class="w-full text-sm text-left text-gray-900">
+          <tbody class="">
+            <tr  class="border">
+              <td class=" px-1.5 py-1 text-center border">Made by:</td>
+              <td class=" px-1.5 py-1 text-center border">Checked by:</td>
+              <td class=" px-1.5 py-1 text-center border">Approved by:</td>
+            </tr>
+            <tr class="border h-20">
+              <td class="px-1.5 py-1 text-center border"></td>
+              <td class="px-1.5 py-1 text-center border"></td>
+              <td class="px-1.5 py-1 text-center border"></td>
+            </tr>
+            <tr  class="border">
+              <td class="px-1.5 py-1 text-center border">Efraim Roh Imanuel</td>
+              <td class="px-1.5 py-1 text-center border">Benny Yanuarsa Wardhana</td>
+              <td class="px-1.5 py-1 text-center border">Teguh Adi Putranto</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+  </div>

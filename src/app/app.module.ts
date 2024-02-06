@@ -30,6 +30,9 @@ import { SidebarComponent } from './layouts/sidebar/sidebar.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { ShowDataCleaningComponent } from './pages/dataCleaning/show-data-cleaning/show-data-cleaning.component';
 import { SpinnerComponent } from './utils/spinner/spinner.component';
+import { ViewChecklistComponent } from './pages/checklist/view-checklist/view-checklist.component';
+import { PrintReportComponent } from './pages/dashboard/print-report/print-report.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -54,6 +57,9 @@ import { SpinnerComponent } from './utils/spinner/spinner.component';
     DashboardComponent,
     ShowDataCleaningComponent,
     SpinnerComponent,
+    ViewChecklistComponent,
+    PrintReportComponent,
+   
   ],
   imports: [
     BrowserModule,
